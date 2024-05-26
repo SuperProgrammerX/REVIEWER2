@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # REVIEWER2: Optimizing Review Generation Through Prompt Generation
 
 ## Project Description
@@ -206,10 +205,3 @@ For more information, please contact:
 - Jingtian Wu: jw2349@cornell.edu
 - Zhaolin Gao: zg292@cornell.edu
 - Thorsten Joachims: thorsten.joachims@cornell.edu
-=======
-# REVIEWER2
-<<<<<<< HEAD
->>>>>>> 211bcb2 (first commit)
-=======
-# REVIEWER2
->>>>>>> 1c83d40 (first commit)
