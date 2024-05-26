@@ -24,8 +24,8 @@ Ensure you have the following installed:
 #### 1. Clone the Repository
 Clone the repository and navigate to the project directory:
 ```sh
-git clone https://github.com/jw2349/REVIEWER2-demo-system.git
-cd REVIEWER2-demo-system
+git clone https://github.com/SuperProgrammerX/REVIEWER2.git
+cd REVIEWER2
 ```
 
 #### 2. Create and Activate Virtual Environment
@@ -60,33 +60,6 @@ npm install
 Ensure your environment variables are set up. If you use `.zshrc` for environment configurations, make sure to source it:
 ```sh
 source ~/.zshrc
-```
-
-### Directory Structure
-Your project directory should look like this:
-```
-REVIEWER2/
-├── .vscode/
-├── chat-app/
-│   ├── node_modules/
-│   ├── public/
-│   ├── src/
-│   ├── .gitignore
-│   ├── package-lock.json
-│   ├── package.json
-│   └── README.md
-├── my-api/
-│   ├── json/
-│   ├── offloaded_weights_folder/
-│   ├── uploads/
-│   ├── check_and_restart.sh
-│   ├── llama_attn_replace.py
-│   ├── rvfastapi.py
-│   ├── rvlib.py
-│   ├── science-parse-cli-assembly-2.0.3.jar
-│   └── start_server.sh
-├── logfile.log
-└── README.md
 ```
 
 ### Running the Server
