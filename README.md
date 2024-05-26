@@ -62,17 +62,31 @@ Ensure your environment variables are set up. If you use `.zshrc` for environmen
 source ~/.zshrc
 ```
 
+
 ### Running the Server
 
-#### Start the FastAPI Server
-To start the FastAPI server, use the following command:
-```sh
-cd my-api
-uvicorn rvfastapi:app --host 0.0.0.0 --port 3001 --log-level debug
-```
+#### Backend-Frontend Communication
+1. Open two terminals: one for the backend and one for the frontend.
+2. In the first terminal, connect to the Cornell g2 login node by running:
+   ```sh
+   ssh CornellNetID@g2-login-05.coecis.cornell.edu
+   ```
+   Then, execute the following command to request a GPU node:
+   ```sh
+   srun --pty --gres=gpu:a6000:1 --mem 64000 -n 1 /bin/bash
+   ```
+3. In the second terminal, connect to the GPU node assigned to your first terminal. Replace `<GPU_NODE>` with the actual GPU node address:
+   ```sh
+   ssh CornellNetID@<GPU_NODE>
+   ```
+4. In one of the terminals, create a reverse tunnel and connect to the osmot terminal by running:
+   ```sh
+   ssh -R 3001:localhost:3001 CornellNetID@osmot.cs.cornell.edu
+   ```
 
 ### Running the Backend
 ```sh
+source ~/.zshrc
 cd my-api
 python rvfastapi.py
 ```
