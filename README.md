@@ -208,4 +208,8 @@ For more information, please contact:
 - Thorsten Joachims: thorsten.joachims@cornell.edu
 =======
 # REVIEWER2
+<<<<<<< HEAD
 >>>>>>> 211bcb2 (first commit)
+=======
+# REVIEWER2
+>>>>>>> 1c83d40 (first commit)
