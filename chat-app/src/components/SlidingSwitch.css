@@ -1,0 +1,143 @@
+**CSS** .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #f0f0f0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.switch-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 15px;
+  background-color: #4CAF50;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.switch-input:checked~.switch-track {
+  transform: translateX(60px);
+}
+
+.switch-track {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 30px;
+  height: 15px;
+  background-color: #4CAF50;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.switch-track::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 15px;
+  background-color: #4CAF50;
+  border-radius: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.container label {
+  position: relative;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.container label span {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 18px;
+  background-color: #bab5b5;
+  border-radius: 30px;
+  box-shadow: inset 0 2px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 2px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.container label .indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(to bottom, #444, #222);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  transform: scale(0.9);
+  transition: 0.5s;
+}
+
+.container label .indicator::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f00;
+  border-radius: 50%;
+  box-shadow: 0 0 2px #f00,
+    0 0 5px #f00,
+    0 0 10px #f00,
+    0 0 15px #f00,
+    0 0 20px #f00,
+    0 0 25px #f00,
+    0 0 30px #f00,
+    0 0 35px #f00;
+  transition: 0.5s;
+}
+
+.container label input:checked~.indicator {
+  left: 18px;
+}
+
+.container label input:checked~.indicator::before {
+  background-color: #0f0;
+  box-shadow: 0 0 2px #0f0,
+    0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 15px #0f0,
+    0 0 20px #0f0,
+    0 0 25px #0f0,
+    0 0 30px #0f0,
+    0 0 35px #0f0;
+}
+
+.container label:last-child {
+  font-size: 12px;
+  /* Smaller text size */
+  font-family: Arial, sans-serif;
+  /* Change typeface, Arial as an example */
+  color: #333;
+  /* Optional: change the text color to a darker grey for better readability */
+  margin-left: -5px;
+  /* Adjust spacing if needed */
+  align-self: center;
+  /* Vertically align the text with the switch */
+}
+
+/* Additional tweaks to ensure the label text is clearly visible and aesthetically pleasing */
+.container {
+  align-items: center;
+  /* Ensure all items in the container are vertically centered */
+  gap: 10px;
+  /* Add space between the switch and the label text */
+}

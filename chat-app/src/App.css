@@ -1,0 +1,47 @@
+/* Center align text within the App component */
+.App {
+  text-align: center;
+}
+
+/* Set the logo height and disable pointer events */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* Apply spin animation to the logo for users who do not prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Style the header with a dark background, flexible layout, and centered content */
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Set the link color to light blue */
+.App-link {
+  color: #61dafb;
+}
+
+/* Keyframes for the logo spin animation */
+/* 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+*/

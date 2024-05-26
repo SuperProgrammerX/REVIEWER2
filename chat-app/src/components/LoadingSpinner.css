@@ -1,0 +1,45 @@
+/* LoadingSpinner.css */
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 25%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    pointer-events: none;
+}
+
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.15);
+    border-top-color: #000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+
+}
+
+.loading-content {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.loading-text {
+    position: positive;
+    transform: translate(-50%, -0.5em);
+    text-align: right;
+    color: #480202;
+    font-size: 9px;
+    font-style: italic;
+    width: 100px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
