@@ -149,34 +149,42 @@ curl -X POST "http://localhost:3001/generate-review"   -H "Content-Type: applica
 
 ## Automated Scripts
 
-### 1. Start Server Script
-Create a script named `start_server.sh` to activate the virtual environment and start the server:
-```bash
-#!/bin/bash
+### Backend Automation
 
-source /path/to/your/project/venv/bin/activate  # Activate virtual environment
-uvicorn rvfastapi:app --host 0.0.0.0 --port 3001 --log-level debug
-```
-
-### 2. Check and Restart Server Script
-Create a script named `check_and_restart_server.sh` to check if the server is running and restart it if necessary:
-```bash
-#!/bin/bash
-
-# Check if the server is running
-if ! pgrep -f "uvicorn rvfastapi:app" > /dev/null
-then
-    echo "Server is not running. Restarting..."
-    ./start_server.sh
-else
-    echo "Server is running."
-fi
-```
-
-Make both scripts executable:
+#### 1. Create and Make Executable the `start_backend.sh` Script
+Create a script named `start_backend.sh` in your backend directory to automate the startup, monitoring, and restarting of the backend server. Ensure the script is executable:
 ```sh
-chmod +x start_server.sh
-chmod +x check_and_restart_server.sh
+chmod +x /home/jw2349/REVIEWER2/my-api/start_backend.sh
+```
+
+#### 2. Set Up the Cron Job on g2 Server
+Set up a cron job to run the backend monitoring script every 5 minutes:
+```sh
+crontab -e
+```
+
+Add the following line:
+```sh
+*/5 * * * * /home/jw2349/REVIEWER2/my-api/start_backend.sh
+```
+
+### Frontend Automation
+
+#### 1. Create and Make Executable the start_frontend.sh Script
+Create a script named start_frontend.sh in your frontend directory to automate the startup of the frontend server. Ensure the script is executable:
+```sh
+chmod +x /home/jw2349/REVIEWER2/my-api/start_backend.sh
+```
+
+#### 2. Set Up the Cron Job on osmot Server
+Set up a cron job to start the frontend script at system reboot:
+```sh
+crontab -e
+```
+
+Add the following line:
+```sh
+@reboot /home/jw2349/REVIEWER2/chat-app/start_frontend.sh
 ```
 
 ## License
