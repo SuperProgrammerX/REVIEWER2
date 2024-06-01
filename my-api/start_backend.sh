@@ -8,10 +8,6 @@ echo "Starting backend setup at $(date)" >> $LOG_FILE
 
 # Function to start the backend server inside a tmux session
 start_tmux_session() {
-    echo "Killing any existing tmux session named backend_session" >> $LOG_FILE
-    tmux kill-session -t backend_session 2>/dev/null
-    echo "Existing tmux session killed successfully" >> $LOG_FILE
-
     # Delete the existing GPU node record
     echo "Deleting the existing GPU node record" >> $LOG_FILE
     rm -f $HOSTNAME_FILE
@@ -42,7 +38,7 @@ start_tmux_session() {
     
     # Start the backend server
     echo \"Starting the backend server\" >> $LOG_FILE
-    nohup python rvfastapi.py > backend.log 2>&1 &
+    python rvfastapi.py
     echo \"Backend server started successfully\" >> $LOG_FILE
     '"
     
