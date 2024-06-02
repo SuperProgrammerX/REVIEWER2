@@ -6,15 +6,16 @@ HOSTNAME_FILE="/home/jw2349/REVIEWER2/my-api/gpu_node.txt"
 # Log the start time
 echo "Starting backend setup at $(date)" >> $LOG_FILE
 
-# Function to start the backend server inside a tmux session
-start_tmux_session() {
+# Function to start the backend server
+start_backend_server() {
     # Delete the existing GPU node record
     echo "Deleting the existing GPU node record" >> $LOG_FILE
     rm -f $HOSTNAME_FILE
     echo "Existing GPU node record deleted successfully" >> $LOG_FILE
 
-    echo "Creating a new tmux session named backend_session" >> $LOG_FILE
-    tmux new-session -d -s backend_session "srun --pty --gres=gpu:a6000:1 --mem 64000 -n 1 /bin/bash -c '
+    echo "Starting backend server with nohup" >> $LOG_FILE
+    nohup bash -c "
+    srun --pty --gres=gpu:a6000:1 --mem 64000 -n 1 /bin/bash -c '
     # Record the GPU node hostname
     HOSTNAME=\$(hostname)
     echo \$HOSTNAME > $HOSTNAME_FILE
@@ -40,12 +41,18 @@ start_tmux_session() {
     echo \"Starting the backend server\" >> $LOG_FILE
     python rvfastapi.py
     echo \"Backend server started successfully\" >> $LOG_FILE
-    '"
-    
-    echo "Backend server and monitoring started in tmux session at $(date)" >> $LOG_FILE
+    '
+    " >> $LOG_FILE 2>&1 &
+
+    # Get the PID of the last background job
+    BACKEND_PID=$!
+    echo "Backend server started with PID $BACKEND_PID at $(date)" >> $LOG_FILE
+
+    # Disown the process to ensure it keeps running after terminal closure
+    disown $BACKEND_PID
 }
 
-# Check if the tmux session is already running
+# Check if the backend server is already running
 if [ -f $HOSTNAME_FILE ]; then
     GPU_NODE=$(cat $HOSTNAME_FILE)
     echo "Checking connection to GPU node: $GPU_NODE" >> $LOG_FILE
@@ -53,11 +60,11 @@ if [ -f $HOSTNAME_FILE ]; then
     
     if [ $? -ne 0 ]; then
         echo "Unable to connect to GPU node $GPU_NODE. Starting a new session." >> $LOG_FILE
-        start_tmux_session
+        start_backend_server
     else
         echo "Successfully connected to GPU node $GPU_NODE. No need to restart." >> $LOG_FILE
     fi
 else
     echo "No GPU node recorded. Starting a new session." >> $LOG_FILE
-    start_tmux_session
+    start_backend_server
 fi
